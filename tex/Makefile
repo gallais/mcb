@@ -1,11 +1,12 @@
 quick:
 	pdflatex main && cp main.pdf book.pdf
 all:
-	pdflatex main
-	bibtex main
-	pdflatex main
-	pdflatex main
-	pdflatex main && cp main.pdf book.pdf
+	latexmk -pdf main.tex && cp main.pdf book.pdf
+
+ebook:
+	latexmk -pdf ebook.tex
+	cp ebook.pdf "Mathematical Components.pdf"
+	exiftool -author="Assia Mahboubi, Enrico Tassi" -title="Mathematical Components" "Mathematical Components.pdf"
 
 clean:
 	rm -rf .*/rt *.aux
